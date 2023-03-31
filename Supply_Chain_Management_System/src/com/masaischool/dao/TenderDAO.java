@@ -5,4 +5,6 @@ import com.masaischool.exception.SomethingWentWrongException;
 
 public interface TenderDAO {
 	public void addTender(Tender tender) throws SomethingWentWrongException;
+	
+	
 }
