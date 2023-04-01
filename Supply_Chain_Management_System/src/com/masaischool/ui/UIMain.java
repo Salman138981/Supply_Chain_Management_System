@@ -6,6 +6,8 @@ public class UIMain {
 	
 	static void displayAdminMenu() {
 		System.out.println("1. Add new tender");
+		System.out.println("2. view all tenders");
+		System.out.println("3. view all the bids of a tender");
 	}
 	
 	static void adminMenu(Scanner sc) {
@@ -21,7 +23,16 @@ public class UIMain {
 				break;
 			case 1:
 				TenderUI.addNewTender(sc);
+				break;
+			case 2: 
+				TenderUI.viewAllTenders();
+				break;
+			case 3:
+				BidsUI.viewBidsOfTender(sc);
+				break;
 			}
+		
+				
 		}while(choice!=0);
 	}
 	
@@ -31,7 +42,7 @@ public class UIMain {
 		System.out.println("Enter username");
 		String password = sc.next();
 		
-		if(username.equalsIgnoreCase("username") && password.equalsIgnoreCase("password")) {
+		if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
 			adminMenu(sc);
 		}else {
 			System.out.println("Invalid username and Password");
@@ -52,7 +63,7 @@ public class UIMain {
 					case 1:
 						adminLogin(sc);
 						break;
-					case 2:
+					case 2: 
 						//customerLogin(sc);
 						break;
 					default:
