@@ -1,12 +1,15 @@
 package com.masaischool.ui;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 import com.masaischool.dao.TenderDAO;
 import com.masaischool.dao.TenderDAOImpl;
 import com.masaischool.dto.Tender;
 import com.masaischool.dto.TenderImpl;
+import com.masaischool.exception.NoRecordFoundException;
 import com.masaischool.exception.SomethingWentWrongException;
 
 public class TenderUI {
@@ -32,5 +35,21 @@ public class TenderUI {
 		}
 		 
 		
+	}
+	
+	public static void viewAllTenders() {
+		 
+		TenderDAO tenDAO = new TenderDAOImpl();
+		try {
+			List<Tender> ten = tenDAO.getAllTender();
+			Consumer<Tender> con = tender -> System.out.println("Tender id "+ tender.getTender_id()+" Tender_name "+ tender.getTender_name()
+			+" Tender posted date "+ tender.getTender_posted_date()+ " Tender close date " + tender.getTender_close_date());
+			
+			ten.forEach(con);
+					
+		}catch(SomethingWentWrongException | NoRecordFoundException e) {
+			System.out.println(e.getMessage());
+			
+		}
 	}
 }
